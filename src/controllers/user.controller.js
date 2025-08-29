@@ -33,7 +33,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const avatarLocalPath = req.files?.avatar[0]?.path;
-  const coverImageLocalPath = req.file?.coverImage?.path;
+  const coverImageLocalPath = req.file?.coverImage[0]?.path;
 
   if (!avatarLocalPath) {
     throw new ApiError(400, "Avatar Not Found");
@@ -64,7 +64,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   return res
     .status(201)
-    .json(new ApiResponse(200, createdUser, "User Registerd Successfully"));
+    .json(new ApiResponse(200, findUser, "User Registerd Successfully"));
 });
 
 export { registerUser };
